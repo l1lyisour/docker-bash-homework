@@ -17,4 +17,17 @@ case "$1" in
   run_reporter)
     docker run -v $(pwd)/data:/data cat-reporter
     ;;
+  structure)
+    find . -not -path './.git/*' | sort
+    ;;
+  clear_data)
+    rm -f data/*.csv data/*.html
+    echo "папка data очищена!"
+    ;;
+  inside_generator)
+    docker run -v $(pwd)/data:/data cat-generator ls /data
+    ;;
+  inside_reporter)
+    docker run -v $(pwd)/data:/data cat-reporter ls /data
+    ;;
 esac
